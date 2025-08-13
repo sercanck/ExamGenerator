@@ -1,48 +1,21 @@
 import glob
 import os
 import re
+import random
 
-pn_questions = "./questions/"
+
+pn_questions  = "./questions/"
+template_name = "template.tex"
+question_list = []
 
 
 def read_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as file: #read file
         content = file.read()
-    
+    file.close()
     #print(content)
     return content
     
-    
-    
-    #Bunlar bir tuple'a gidecek.
-    #Sonra girdiler neler olacak ve ona gore nasil dizecek.
-    #Konu keywordleri bir dosya olarak verilmeli
-    #Keyword-Difficulty etkilesmesi 1. soru icin adaylar
-    #2. soru icin adaylar
-    #Sonra radndom olarak adaylardan sec ama aynı soru olmamasına dikkat et
-    
-    #Ardından hepsini bir dosyada birlestir. Required packageları da dogru diz
-    #Latex'le?
-    #Bir de bunun icin menu ciksa olur
-    
-    #Case 2, Sınavın zorlugu: Bu version 2'ye
-       
-    
-#    """ Extract Keywords (comma-separated values after "Keywords: ")"""
-#    keywords_match = re.search(r"Keywords:\s*(.*?)\s*END", content, re.DOTALL)
-#    if keywords_match:
-#        keywords = [k.strip() for k in keywords_match.group(1).split(',')]
-#    else:
-#        keywords = []
-
-#    # Extract Difficulty (number after "Difficulty: ")
-#    difficulty_match = re.search(r"Difficulty:\s*(\d+)", content)
-#    difficulty = int(difficulty_match.group(1)) if difficulty_match else None
-
-#    return {
-#        "Keywords": keywords,
-#        "Difficulty": difficulty
-#    }
     
 def extract_field(content, field):
     """
@@ -59,13 +32,55 @@ def extract_field(content, field):
 #print("Keywords:", result["Keywords"])
 #print("Difficulty:", result["Difficulty"])
 
+with open('exam_structure','r') as file_structure:
+    for line in file_structure.readlines(): #Loop over target question
+      question, target_keyword, target_difficulty = line.rstrip("\n").split(": ")
+      possible_questions = []
+
+      """Find suitable questions"""
+      for qn in sorted(os.listdir(pn_questions)):
+        if qn in question_list:
+          continue
+      
+        fn=pn_questions+qn
+        content=read_file(fn)
+        Keywords   = extract_field(content,"Keywords")
+        Difficulty = extract_field(content,"Difficulty")
+ 
+        #Tüm dosyaları okumak zahmetli grep gibi bir sey olsa iyi is gorurdu
+        
+        if (target_difficulty==Difficulty) and (target_keyword in Keywords):           
+          possible_questions.append(qn)
+          #TODO: target_keyword birden fazla olabilir
+
+      #TODO: if possible_questions is empty do something...
+        
+      question_list.append(random.choice(possible_questions))   
+
+                  
+  
+questions_all = ""        
+#Loop tex birleştir        
+for qn in question_list:
+  fn=pn_questions+qn
+  content=read_file(fn)
+  text = extract_field(content,"Text")
+  questions_all += text + "\n" + "\n"   
+
+  #TOD0: Replace packages with usepackage{} and tikzpackage etc.
+ 
+ 
+with open(template_name, 'r', encoding='utf-8') as file: #read file
+     content_template = file.read()
 
 
-for qn in sorted(os.listdir(pn_questions)):
-   fn=pn_questions+qn
-   content=read_file(fn)
-   Keywords   = extract_field(content,"Keywords")
-   Difficulty = extract_field(content,"Difficulty")
+content_template=content_template.replace("QUESTIONSHERE",questions_all)     
+print(content_template)
+#TODO: write to a new file
+
+          
+        
+
 
 
 
