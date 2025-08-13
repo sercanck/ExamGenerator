@@ -1,0 +1,35 @@
+{Difficulty: 5
+END}
+
+{Keywords: Enerji, PotansiyelEnerji, Yay 
+END}
+
+
+{Requiredpackages:
+
+  usetikzlibrary: decorations.pathreplacing,decorations.markings,calc,positioning,backgroundspatterns,snakes}
+
+END}
+
+
+{Text:
+
+\question Yandaki şekildeki 5 kg kütleli bir cisim, 12 m/s hızıyla fırlatılıyor ve serbest yaya çarpıyor. Yayın yay sabiti 500 N/m ve cisimle zemin arasındaki sürtünme önemsiz olduğuna göre cisim yayı kaç metre sıkıştırır? (Yayın potansiyel enerjisi $1/2*k*x^2$)
+
+\begin{tikzpicture}
+\draw[line width=0.3mm] (0,1) -- ++(0,-1) -- ++(4,0);
+\filldraw[red,line width=0.2mm] (2.8,0) rectangle (3.5,0.5);
+\draw[line width=0.2mm,snake=coil,segment amplitude=5,segment length=5,line cap=round] (0,0.3) -- ++(1,0);
+\draw[line width=0.2mm] (1,0.1) -- ++(0,0.5);
+
+\draw[{stealth}-,line width=0.2mm] (3.0,0.7) -- node[above] {$\scriptstyle 12\,\mathrm{m/s}$} (3.3,0.7);
+\end{tikzpicture}
+
+\begin{oneparchoices}
+ \choice $1.2 m$
+ \choice $1.4 m$ 
+ \choice $1 m$
+ \choice $1.6 m$
+\end{oneparchoices}
+
+END}
