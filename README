@@ -1,0 +1,6 @@
+ExamStructure
+
+  Qname: Keyword1,Keyword2: Difficulty
+  Delimiter between fields is ": "
+  Keywords-> Delimiter ","
+

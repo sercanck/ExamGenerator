@@ -39,10 +39,12 @@ def extract_packages(content,plist):
     plist =  package list
     """
     content_temp=extract_field(content, "Requiredpackages")
+    
+    if not bool(re.search(r'[a-zA-Z]', content_temp)): #Requiredpackage yoksa...
+      return plist   #Do nothing
+
     for line in content_temp.splitlines():
       command, arguments = line.split(": ")
-
-    #TODO: Requiredpackage yoksa...
 
 
     if command in list(packages_list.keys()): #If the command exists
@@ -72,14 +74,18 @@ with open('exam_structure','r') as file_structure:
  
         #TODO:Tüm dosyaları okumak zahmetli grep gibi bir sey olsa iyi is gorurdu
         
-        if (target_difficulty==Difficulty) and (target_keyword in Keywords):           
-          possible_questions.append(qn)
-          #TODO: target_keyword birden fazla olabilir           
+        if "," in target_keyword: #If target keyword is plural
+          if (target_difficulty==Difficulty) and set(target_keyword.split(",")).issubset(set(Keywords.split(", "))) :
+            possible_questions.append(qn) 
+        else: #If target keyword is singular
+          if (target_difficulty==Difficulty) and (target_keyword in Keywords):           
+            possible_questions.append(qn)
 
-      if not possible_questions: 
-        print("Cannot find a suitable question candidate for "+question+"!!!")  #if possible_questions is empty do something...
-      else:  
+
+      if possible_questions: 
         question_list.append(random.choice(possible_questions))      
+      else:  
+        print("Cannot find a suitable question candidate for "+question+"!!!")  #if possible_questions is empty do something...
                   
 
 """Merge questions and packages"""        
