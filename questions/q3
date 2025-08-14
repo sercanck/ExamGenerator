@@ -7,7 +7,7 @@ END}
 
 {Requiredpackages:
 
-  usetikzlibrary: decorations.pathreplacing,decorations.markings,calc,positioning,backgroundspatterns,snakes}
+  usetikzlibrary: decorations.pathreplacing,decorations.markings,calc,positioning,backgroundspatterns,snakes
 
 END}
 
