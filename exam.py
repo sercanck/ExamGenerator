@@ -3,6 +3,8 @@ import os
 import re
 import random
 
+#TODO:Tüm dosyaları okumak zahmetli grep gibi bir sey olsa iyi is gorurdu
+
 
 pn_questions  = "./questions/"  #Name of the question folder
 template_name = "template.tex"  #Name of the exam's template
@@ -72,7 +74,6 @@ with open('exam_structure','r') as file_structure:
         Keywords   = extract_field(content,"Keywords")
         Difficulty = extract_field(content,"Difficulty")
  
-        #TODO:Tüm dosyaları okumak zahmetli grep gibi bir sey olsa iyi is gorurdu
         
         if "," in target_keyword: #If target keyword is plural
           if (target_difficulty==Difficulty) and set(target_keyword.split(",")).issubset(set(Keywords.split(", "))) :

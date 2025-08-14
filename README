@@ -1,6 +1,35 @@
 ExamStructure
 
   Qname: Keyword1,Keyword2: Difficulty
+
   Delimiter between fields is ": "
   Keywords-> Delimiter ","
 
+template_tex:
+  Modify as you wish but does not change "PACKAGESHERE" and "QUESTIONSHERE". 
+  exam.py replace QUESTONSHERE with texts of questions and PACKAGESHERE with required packages.
+
+Questions:
+  You can rename folder name but then update "pn_questions" variable in exam.py. If you are using Windows you have to modify this variable.
+  
+  Question file names can be anything (single word to be on safe side).
+  
+  Question file format:
+    Fieds are Difficulty, Keywords, Requiredpackages, Text.
+    All fields has to be exist and defined. Only Requiredpackages can be left empty.
+    
+    Except Requiredpackages,
+    {FIELD: ...
+    END}
+    
+    Delimiter for keywords is ", "
+    
+    {Requiredpackages:
+       command1: argument1,argument2,argument3
+       command2: argument4,argument5 
+    END}   
+     
+    {Requiredpackages:
+       usepackage: amsmath
+       tikzlibrary: calc,positioning 
+    END}   
