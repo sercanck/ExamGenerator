@@ -1,6 +1,12 @@
----14/08/2025 by Sercan Cikintoglu---
+---17/08/2025 by Sercan Cikintoglu---
 
-Output file name is exam.tex. You can modify by changing "output_name" variable in exam.py
+Exam.py:
+
+   It generates exam based on exam_structure from question database
+   It has two modes:
+     mode=1: Questions are selected based on individual difficulties. Enables if "target_overall_difficulty" variable is set to zero in "exam.py"
+     mode=2: Questions are selected based on overall difficulty. It ignores difficulty column in "Exam_structure". Enables if "target_overall_difficulty" is bigger than zero.
+   Output file name is "exam.tex". You can modify by changing "output_name" variable in exam.py
 
 
 ExamStructure
@@ -11,17 +17,18 @@ ExamStructure
   Keywords-> Delimiter ","
 
 template_tex:
-  Modify as you wish but does not change "PACKAGESHERE" and "QUESTIONSHERE". 
-  exam.py replace QUESTONSHERE with texts of questions and PACKAGESHERE with required packages.
+  Modify as you wish but do not change "PACKAGESHERE" and "QUESTIONSHERE". 
+  exam.py replaces QUESTONSHERE with texts of questions and PACKAGESHERE with required packages.
 
 Questions:
-  You can rename folder name but then update "pn_questions" variable in exam.py. If you are using Windows you have to modify this variable.
+  The default path of the question database is "./questions/" folder.
+  You can select different path for question database by updating "pn_questions" variable in exam.py. If you are using Windows you have to modify this variable.
   
-  Question file names can be anything (single word to be on safe side).
+  Names of question files can be anything (single word to be on safe side).
   
   Question file format:
-    Fieds are Difficulty, Keywords, Requiredpackages, Text.
-    All fields has to be exist and defined. Only Requiredpackages can be left empty.
+    Fieds: Difficulty/Keywords/Requiredpackages/Text.
+    All fields have to be defined. Only "Requiredpackages" can be left empty.
     
     Except Requiredpackages,
     {FIELD: ...
