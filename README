@@ -14,8 +14,10 @@ Exam.py:
         Create a folder named as figure_folder. Copy figures from pn_question/figure_database to figure_folder.
         Rename figure names in the questions as figure_name -> figure_folder/figure_name
      iscopy_figures=False: 
-        The code do nothing related with figures. So, figure names should be written in the question database
-        as ""\includegraphics[...]{pn_questions/figures/figure_name}". By that way, output Latex file can be compiled without errors.       
+        The code do nothing related with figures. So, figure names should be written in the question database as 
+          for Linux/MacOS: "\includegraphics[...]{pn_questions/figures/figure_name}"
+          for Windows:     "\includegraphics[...]{pn_questions\figures\figure_name}"
+        By that way, output Latex file can be compiled without errors.       
 
 
 ExamStructure
@@ -30,8 +32,8 @@ template_tex:
   exam.py replaces QUESTONSHERE with texts of questions and PACKAGESHERE with required packages.
 
 Questions:
-  The default path of the question database is "./questions/" folder.
-  You can select different path for question database by updating "pn_questions" variable in exam.py. If you are using Windows you have to modify this variable.
+  The default folder name of the question database is "questions".
+  You can select different folder name for question database by updating "pn_questions" variable in exam.py.
   
   Names of question files can be anything (single word to be on safe side).
   

@@ -8,7 +8,7 @@ import shutil
 
 #TODO: Tüm dosyaları okumak zahmetli grep gibi bir sey olsa iyi is gorurdu ama yok.
 #TODO: Cevap anahtarı
-#TODO: Windows/Linux farkı pathler icin
+#TODO: Config file'a tasi user_defined parametrelerigi
 
 """
 iscopy_figures:
@@ -33,7 +33,7 @@ else:
 
 sigma=5.0    #Sigma of the Gaussian distrubition used in the 2nd mode
 
-pn_questions    = "./questions/"  #Name of the question database folder
+pn_questions    = "questions"  #Name of the question database folder
 template_name   = "template.tex"  #Name of the exam's template
 output_name     = "exam.tex"      #Name of the exam
 figure_database = "figures"       #Name of the figure database folder 
@@ -95,8 +95,8 @@ def extract_packages(content,plist):
 def extract_fignames(content,fglist):
     
     """
-      Extract text between {} after each \includegraphic.
-      Figure names should be on the same line with \includegraphic
+      Extract text between {} after each \includegraphics.
+      Figure names should be on the same line with \includegraphics
       Append them to the fglist
     """
     pattern = r"\\includegraphics.*\{(.*?)\}"
@@ -138,7 +138,7 @@ if mode==1: #Questions are selected based on individual difficulty
         if qn in question_list: #If this question is already selected, skip
           continue
           
-        fn=pn_questions+qn
+        fn=os.path.join(pn_questions,qn)
 
         if not os.path.isfile(fn): #If it is a folder, skip
           continue
@@ -162,7 +162,7 @@ if mode==1: #Questions are selected based on individual difficulty
   """Merge questions and packages"""        
   for qn in question_list:
   
-    fn=pn_questions+qn
+    fn=os.path.join(pn_questions,qn)
     content=read_file(fn)
     text = extract_field(content,"Text")
 
@@ -210,7 +210,7 @@ elif mode==2: #Questions are selected based on overall difficulty
       """Find suitable questions"""
       for qn in sorted(os.listdir(pn_questions)):
    
-        fn=pn_questions+qn
+        fn=os.path.join(pn_questions,qn)
  
         if not os.path.isfile(fn): #If it is a folder.
           continue
@@ -261,7 +261,7 @@ elif mode==2: #Questions are selected based on overall difficulty
   """Merge questions and packages"""        
   for qn in question_dict.values():
     if qn:
-      fn=pn_questions+qn
+      fn=os.path.join(pn_questions,qn)
       content=read_file(fn)
       text = extract_field(content,"Text")
       questions_all += text + "\n" + "\n"   
