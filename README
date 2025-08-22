@@ -8,6 +8,15 @@ Exam.py:
      mode=2: Questions are selected based on overall difficulty. It ignores difficulty column in "Exam_structure". Enables if "target_overall_difficulty" is bigger than zero.
    Output file name is "exam.tex". You can modify by changing "output_name" variable in exam.py
 
+   For figures,
+     iscopy_figures=True: 
+        Figure names should be written without path, i.e., "\includegraphics[...]{figure_name}" in the question database 
+        Create a folder named as figure_folder. Copy figures from pn_question/figure_database to figure_folder.
+        Rename figure names in the questions as figure_name -> figure_folder/figure_name
+     iscopy_figures=False: 
+        The code do nothing related with figures. So, figure names should be written in the question database
+        as ""\includegraphics[...]{pn_questions/figures/figure_name}". By that way, output Latex file can be compiled without errors.       
+
 
 ExamStructure
 

@@ -1,0 +1,29 @@
+{Difficulty: 3
+END}
+
+{Keywords: Kuvvet 
+END}
+
+
+{Requiredpackages:
+
+  usepackage: graphicx
+
+END}
+
+
+{Text:
+
+\question Yandaki şekildeki 5 kg kütleli bir cisim, 12 m/s hızıyla fırlatılıyor ve serbest yaya çarpıyor. Yayın yay sabiti 500 N/m ve cisimle zemin arasındaki sürtünme önemsiz olduğuna göre cisim yayı kaç metre sıkıştırır? (Yayın potansiyel enerjisi $1/2*k*x^2$)
+
+\includegraphics[width=0.3]{test.jpeg}
+\includegraphics[width=0.3]{test2.jpeg}
+
+\begin{oneparchoices}
+ \choice $1.2 m$
+ \choice $1.4 m$ 
+ \choice $1 m$
+ \choice $1.6 m$
+\end{oneparchoices}
+
+END}
